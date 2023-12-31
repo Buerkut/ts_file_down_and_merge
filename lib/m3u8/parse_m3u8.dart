@@ -6,10 +6,10 @@ Future<List<String>> parseM3u8(File m3u8File) async {
       .openRead()
       .transform(utf8.decoder)
       .transform(const LineSplitter());
-  final fpths = <String>[];
+  final tspths = <String>[];
   await for (var line in lines) {
     if (line.startsWith('#')) continue;
-    fpths.add(line);
+    tspths.add(line);
   }
-  return fpths;
+  return tspths;
 }

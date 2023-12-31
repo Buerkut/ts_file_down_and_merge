@@ -5,7 +5,7 @@ import 'package:ts/file/merge_files_into_one.dart';
 
 // The dir path of ts files to be merged.
 // final dirpath = './lib/http/downloads/gear2/ts/';
-void mergeTsFiles(List<String> tspths, String dirpath) async {
+Future<void> mergeTsFiles(List<String> tspths, String dirpath) async {
   final files = getFiles(dirpath, tspths);
   final isolateNum = 4;
   final tfs = await conprocess(files, _merge, isolateNum).wait;

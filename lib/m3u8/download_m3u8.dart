@@ -1,18 +1,17 @@
 import 'dart:io';
+import 'package:ts/file/write_as_stream.dart';
 
 // Download m3u8 file first。
 Future<File> downloadM3u8(Uri url, String path) async {
-  final file = await File(path).create(recursive: true);
-  final sink = file.openWrite();
+  final File file;
   final client = HttpClient();
   try {
     final request = await client.getUrl(url);
     final response = await request.close();
-    await sink.addStream(response);
-    await sink.flush();
+    file = await writeAsStream(path, response);
   } finally {
     client.close();
-    sink.close();
   }
+
   return file;
 }

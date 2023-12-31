@@ -18,7 +18,7 @@ void downloadAndMerge(
             Uri.http(uriJson['authority']!, '${uriJson['unencodedPath']}$fpth');
         final request = await client.getUrl(url);
         final response = await request.close();
-        // don't use await here. orelse it will block the loop.
+        // Don't use await here. Or else it will block the loop.
         final file = writeAsStream('$dirpath$fpth', response);
         files.add(file);
       }

@@ -1,9 +1,8 @@
-// 尝试切分任务，然后以并发的形式执行。
 import 'dart:async';
 import 'dart:isolate';
-
 import 'package:ts/list/list_apis.dart';
 
+// Split tasks and handle them in concurrency.
 List<Future<R>> conprocess<R, T>(
     List<T> tasks, Future<R> Function(int i, Iterable<T> slice) compute,
     [int isolateNum = 8]) {
